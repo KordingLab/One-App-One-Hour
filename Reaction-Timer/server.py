@@ -8,7 +8,7 @@ App = Flask(__name__)
 
 @App.route("/stats")
 def stats():
-    data_files = glob.glob("data-*.json")
+    data_files = glob.glob("results/data-*.json")
     data = [json.load(open(d, 'r')) for d in data_files]
     return jsonify({"data": data})
 
@@ -17,7 +17,7 @@ def stats():
 def upload_data():
     json.dump(
         request.json,
-        open(f"data-{time.time()}.json", 'w')
+        open(f"results/data-{time.time()}.json", 'w')
     )
     return jsonify({
         "successful": "yes!"
