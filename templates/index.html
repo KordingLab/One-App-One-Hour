@@ -1,0 +1,60 @@
+<html>
+
+    <head>
+        <title>My Application!</title>
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+    </head>
+
+    <body>
+        <script>
+
+            let flashFrame;
+            let flashTime;
+            let responseTime;
+
+            const MAIN_URL = "http://127.0.0.1:5000"
+
+            function setup() {
+                createCanvas(
+                    window.innerWidth,
+                    window.innerHeight
+                );
+                // frameRate(100);
+
+                flashFrame = 100 + round(random() * 400);
+
+                background(0);
+            }
+
+            function draw() {
+                // run on every frame
+                // background(0);
+                if (frameCount >= flashFrame) {
+                    // get the current number of milliseconds
+                    flashTime = (new Date()) * 1;
+                    ellipse(width / 2, height / 2, 200, 200);
+                }
+            }
+
+            function mousePressed() {
+                responseTime = (new Date()) * 1;
+
+                // log this to the console
+                console.log({
+                    responseTime: responseTime,
+                    flashTime: flashTime
+                });
+
+                fetch(`${MAIN_URL}/upload-data`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        responseTime: responseTime,
+                        flashTime: flashTime
+                    })
+                })
+            }
+        </script>
+    </body>
+
+</html>
