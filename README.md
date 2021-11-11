@@ -1,6 +1,6 @@
 # One App, One Hour
 
-This repository contains a set of applications developed in under one hour.
+This repository contains a set of applications developed in under one hour at the [Kording Lab _Lab Teaching_](http://kordinglab.com/2021/01/01/upcoming-lab-teaching.html).
 
 They are designed to show general architecture, and should not necessarily be used as a model for best coding practices.
 
